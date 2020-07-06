@@ -11,7 +11,7 @@ export function App() {
   return (
     <>
       <NavBar />
-      <main className="containter-fluid p-4">
+      <main className="container-fluid p-4">
         <Header />
         <Switch>
           <Route exact path="/">
