@@ -42,7 +42,7 @@ export function Questions() {
         </Link>
 
         <Link
-          to="/questionss/43"
+          to="/questions/42"
           className="list-group-item list-group-item-action"
         >
           <div className="d-flex w-100 justify-content-between">
