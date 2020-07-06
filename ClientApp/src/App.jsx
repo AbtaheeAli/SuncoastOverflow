@@ -5,6 +5,7 @@ import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 import { AskQuestions } from './pages/AskQuestions'
 import { Questions } from './pages/Questions'
+import { ShowQuestion } from './pages/ShowQuestion'
 
 export function App() {
   return (
@@ -18,6 +19,9 @@ export function App() {
           </Route>
           <Route path="/questions/ask">
             <AskQuestions />
+          </Route>
+          <Route path="/questions/:id">
+            <ShowQuestion />
           </Route>
         </Switch>
       </main>
