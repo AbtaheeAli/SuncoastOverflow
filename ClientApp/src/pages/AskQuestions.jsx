@@ -7,21 +7,21 @@ export function AskQuestions() {
       <div className="card-body">
         <form>
           <div className="form-group">
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Title</label>
             <input type="text" className="form-control" id="name" />
           </div>
 
           <div className="form-group">
-            <label htmlFor="description">What Language are you using?</label>
-            <textarea type="text" className="form-control" id="address" />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="description">Question</label>
+            <label htmlFor="description">Body</label>
             <textarea type="text" className="form-control" id="description" />
             <small id="descriptionHelp" className="form-text text-muted">
               Enter your question.
             </small>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="description">Tags</label>
+            <textarea type="text" className="form-control" id="address" />
           </div>
 
           <button type="submit" className="btn btn-primary">
