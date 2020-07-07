@@ -46,7 +46,7 @@ export function Questions() {
             <Link to="#">Home</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            Trending Questions
+            {questions.length} Trending Questions
           </li>
         </ol>
       </nav>
