@@ -3,9 +3,9 @@ namespace SuncoastOverflow.Models
     public class Question
     {
         public int Id { get; set; }
-        public string title { get; set; }
-        public string body { get; set; }
-        public string tags { get; set; }
+        public string Title { get; set; }
+        public string Body { get; set; }
+        public string Tags { get; set; }
 
     }
 }

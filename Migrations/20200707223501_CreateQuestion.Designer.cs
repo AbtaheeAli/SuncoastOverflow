@@ -9,7 +9,7 @@ using SuncoastOverflow.Models;
 namespace SuncoastOverflow.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20200707215811_CreateQuestion")]
+    [Migration("20200707223501_CreateQuestion")]
     partial class CreateQuestion
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,13 +27,13 @@ namespace SuncoastOverflow.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("body")
+                    b.Property<string>("Body")
                         .HasColumnType("text");
 
-                    b.Property<string>("tags")
+                    b.Property<string>("Tags")
                         .HasColumnType("text");
 
-                    b.Property<string>("title")
+                    b.Property<string>("Title")
                         .HasColumnType("text");
 
                     b.HasKey("Id");

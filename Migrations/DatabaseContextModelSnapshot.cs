@@ -25,13 +25,13 @@ namespace SuncoastOverflow.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<string>("body")
+                    b.Property<string>("Body")
                         .HasColumnType("text");
 
-                    b.Property<string>("tags")
+                    b.Property<string>("Tags")
                         .HasColumnType("text");
 
-                    b.Property<string>("title")
+                    b.Property<string>("Title")
                         .HasColumnType("text");
 
                     b.HasKey("Id");
