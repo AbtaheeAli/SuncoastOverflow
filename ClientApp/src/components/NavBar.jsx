@@ -8,7 +8,7 @@ export function NavBar(props) {
   props.setActiveFilter(filterText)
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <Link className=" nav navbar-brand" to="#">
+      <Link className=" nav navbar-brand" to="/">
         <span className="mr-2" role="img" aria-label="sdg">
           <img
             class=""
