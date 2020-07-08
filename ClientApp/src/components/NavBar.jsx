@@ -34,9 +34,9 @@ export function NavBar(props) {
       <div className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
-            <Link className="nav-link" to="/">
-              <span className="navi">Home</span>
-            </Link>
+            {/* <Link className="nav-link" to="/"> */}
+            <span className="navi"></span>
+            {/* </Link> */}
           </li>
         </ul>
         <form className="form-inline my-2 my-lg-0">
