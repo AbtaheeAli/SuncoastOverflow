@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router'
 
 export function AskQuestions() {
+  const history = useHistory()
+
   const [newQuestion, setNewQuestion] = useState({
     title: '',
     body: '',
@@ -17,11 +20,27 @@ export function AskQuestions() {
     })
   }
 
+  const handleFormSubmit = event => {
+    event.preventDefault()
+
+    fetch('/api/Questions', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newQuestion),
+    })
+      .then(response => response.json())
+      .then(apiData => {
+      
+          history.push('/')
+        }
+      })
+  }
+
   return (
     <div className="card">
       <div className="card-header">Ask a Question</div>
       <div className="card-body">
-        <form>
+        <form onSubmit={handleFormSubmit}>
           <div className="form-group">
             <label htmlFor="title">Title</label>
             <input
