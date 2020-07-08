@@ -9,7 +9,7 @@ function SingleQuestionForList(props) {
     >
       <div className="d-flex w-100 justify-content-between">
         <h5 className="mb-1">{props.question.title}</h5>
-        <small>5 Reviews</small>
+        <small>{props.question.answers.length} Reviews</small>
       </div>
       <p className="mb-1">{props.question.body}</p>
       <small className="mr-3">

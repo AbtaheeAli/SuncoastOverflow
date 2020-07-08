@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router'
+import { Questions } from './Questions'
 
 export function ShowQuestion() {
   const params = useParams()
@@ -10,6 +11,7 @@ export function ShowQuestion() {
     title: '',
     body: '',
     tags: '',
+    answers: [],
   })
 
   useEffect(() => {
@@ -37,69 +39,35 @@ export function ShowQuestion() {
       </div>
 
       <div className="row mb-5">
-        <div className="col-12">
-          <h3>Answers</h3>
-          <ul>
-            <li>
-              <p className="mb-2">
-                This is how I would recommend:
-                <span className="float-right">21 March, 2014</span>
-              </p>
-
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                scelerisque diam non nisi semper, et elementum lorem ornare.
-                Maecenas placerat facilisis mollis. Duis sagittis ligula in
-                sodales vehicula....
-              </p>
-              <small className="mr-3">
-                <button className="btn btn-success btn-sm">
-                  <span className="mr-2" role="img" aria-label="upvote">
-                    👍🏻
-                  </span>
-                  5
-                </button>
-              </small>
-              <small className="mr-3">
-                <button className="btn btn-danger btn-sm">
-                  <span className="mr-2" role="img" aria-label="downvote">
-                    👎🏻
-                  </span>{' '}
-                  3
-                </button>
-              </small>
-            </li>
-            <li>
-              <p className="mb-2 pt-5">
-                This is another way!
-                <span className="float-right">21 March, 2014</span>
-              </p>
-
-              <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque
-                scelerisque diam non nisi semper, et elementum lorem ornare.
-                Maecenas placerat facilisis mollis. Duis sagittis ligula in
-                sodales vehicula....
-              </p>
-              <small className="mr-3">
-                <button className="btn btn-success btn-sm">
-                  <span className="mr-2" role="img" aria-label="upvote">
-                    👍🏻
-                  </span>
-                  5
-                </button>
-              </small>
-              <small className="mr-3">
-                <button className="btn btn-danger btn-sm">
-                  <span className="mr-2" role="img" aria-label="downvote">
-                    👎🏻
-                  </span>{' '}
-                  3
-                </button>
-              </small>
-            </li>
-          </ul>
-        </div>
+        {question.answers.length > 0 && (
+          <div className="col-12">
+            <h3>Answers</h3>
+            <ul className="timeline">
+              {question.answers.map(answer => (
+                <li key={answer.id}>
+                  <span className="float-right">{answer.createdAt}</span>
+                  <p>{answer.body}</p>
+                </li>
+              ))}
+              {/* <small className="mr-3">
+              <button className="btn btn-success btn-sm">
+                <span className="mr-2" role="img" aria-label="upvote">
+                  👍🏻
+                </span>
+                5
+              </button>
+            </small>
+            <small className="mr-3">
+              <button className="btn btn-danger btn-sm">
+                <span className="mr-2" role="img" aria-label="downvote">
+                  👎🏻
+                </span>{' '}
+                3
+              </button>
+            </small> */}
+            </ul>
+          </div>
+        )}
       </div>
 
       <div className="card">
