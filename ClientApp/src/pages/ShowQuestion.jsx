@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router'
-import { Questions } from './Questions'
 
 export function ShowQuestion() {
   const params = useParams()
-  const id = params.id
+  const id = parseInt(params.id)
+
+  const [newAnswer, setNewAnswer] = useState({
+    body: '',
+    questionId: id,
+  })
 
   const [question, setQuestion] = useState({
     title: '',
@@ -14,17 +18,38 @@ export function ShowQuestion() {
     answers: [],
   })
 
+  const fetchQuestion = async () => {
+    const response = await fetch(`/api/Questions/${id}`)
+    const apiData = await response.json()
+
+    setQuestion(apiData)
+  }
+
   useEffect(() => {
-    const fetchQuestion = async () => {
-      const response = await fetch(`/api/Questions/${id}`)
-      const apiData = await response.json()
-
-      setQuestion(apiData)
-    }
-
     fetchQuestion()
   }, [])
 
+  const handleNewAnswerFieldChange = event => {
+    const whichFieldChanged = event.target.id
+    const value = event.target.value
+
+    setNewAnswer({ ...newAnswer, [whichFieldChanged]: value })
+  }
+
+  const handleNewAnswerSubmit = event => {
+    event.preventDefault()
+
+    fetch(`/api/Answers`, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(newAnswer),
+    })
+      .then(response => response.json)
+      .then(apiResponse => {
+        fetchQuestion()
+        setNewAnswer({ ...newAnswer, body: '' })
+      })
+  }
   return (
     <div className="taco-listing">
       <div className="media mb-5">
@@ -73,19 +98,16 @@ export function ShowQuestion() {
       <div className="card">
         <div className="card-header">Enter your own answer</div>
         <div className="card-body">
-          <form>
+          <form onSubmit={handleNewAnswerSubmit}>
             <div className="form-group">
-              <label htmlFor="summary">Headline</label>
-              <input
+              <label for="answer">Answer</label>
+              <textarea
                 type="text"
                 className="form-control"
-                id="summary"
-                aria-describedby="summaryHelp"
+                id="body"
+                value={newAnswer.body}
+                onChange={handleNewAnswerFieldChange}
               />
-            </div>
-            <div className="form-group">
-              <label for="review">Answer</label>
-              <textarea type="text" className="form-control" id="review" />
             </div>
             <button type="submit" className="btn btn-primary">
               Submit
