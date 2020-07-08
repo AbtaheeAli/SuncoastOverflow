@@ -38,7 +38,7 @@ namespace SuncoastOverflow.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Question>> GetQuestion(int id)
         {
-            var question = await _context.Questions.FindAsync(id);
+            var question = await _context.Questions.Where(question => question.Id == id).Include(question => question.Answers).FirstOrDefaultAsync();
 
             if (question == null)
             {
