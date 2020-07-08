@@ -10,19 +10,29 @@ function SingleQuestionForList(props) {
       </div>
       <p className="mb-1">{props.question.body}</p>
       <small className="mr-3">
-        <button className="btn btn-success btn-sm">
+        <button
+          className="btn btn-success btn-sm"
+          onClick={event =>
+            props.handleVote(event, props.question.id, 'upvote')
+          }
+        >
           <span className="mr-2" role="img" aria-label="upvote">
             👍🏻
           </span>
-          {question.upvoteCount}
+          {props.question.upvoteCount}
         </button>
       </small>
       <small className="mr-3">
-        <button className="btn btn-danger btn-sm">
+        <button
+          className="btn btn-danger btn-sm"
+          onClick={event =>
+            props.handleVote(event, props.question.id, 'downvote')
+          }
+        >
           <span className="mr-2" role="img" aria-label="downvote">
             👎🏻
           </span>{' '}
-          {question.downvoteCount}
+          {props.question.downvoteCount}
         </button>
       </small>
     </Link>
@@ -31,7 +41,7 @@ function SingleQuestionForList(props) {
 export function Questions(props) {
   const [questions, setQuestions] = useState([])
 
-  useEffect(() => {
+  function loadQuestions() {
     const url =
       props.activeFilter.length === 0
         ? `/api/Questions`
@@ -42,6 +52,23 @@ export function Questions(props) {
       .then(apiData => {
         setQuestions(apiData)
       })
+  }
+
+  const handleVote = (event, id, type) => {
+    event.preventDefault()
+
+    const url = `/api/QuestionVotes/${id}/${type}`
+
+    fetch(url, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+    }).then(() => {
+      loadQuestions()
+    })
+  }
+
+  useEffect(() => {
+    loadQuestions()
   }, [props.activeFilter])
   return (
     <>
@@ -57,7 +84,11 @@ export function Questions(props) {
       </nav>
       <div className="list-group">
         {questions.map(question => (
-          <SingleQuestionForList key={question.id} question={question} />
+          <SingleQuestionForList
+            key={question.id}
+            question={question}
+            handleVote={handleVote}
+          />
         ))}
       </div>
     </>
