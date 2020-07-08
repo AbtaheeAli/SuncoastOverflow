@@ -29,9 +29,9 @@ export function ShowQuestion() {
         <span className="pr-3 display-2" role="" aria-label="t"></span>
         <div className="media-body">
           <h2 className="mt-3">{question.title}</h2>
-          <span className="pt-3">
+          {/* <span className="pt-3">
             <strong>21 March, 2014</strong>
-          </span>
+          </span> */}
           <p>{question.body}</p>
         </div>
       </div>
