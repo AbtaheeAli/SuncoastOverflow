@@ -14,7 +14,7 @@ function SingleQuestionForList(props) {
           <span className="mr-2" role="img" aria-label="upvote">
             👍🏻
           </span>
-          5
+          {question.upvoteCount}
         </button>
       </small>
       <small className="mr-3">
@@ -22,7 +22,7 @@ function SingleQuestionForList(props) {
           <span className="mr-2" role="img" aria-label="downvote">
             👎🏻
           </span>{' '}
-          3
+          {question.downvoteCount}
         </button>
       </small>
     </Link>

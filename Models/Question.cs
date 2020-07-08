@@ -14,13 +14,13 @@ namespace SuncoastOverflow.Models
         public string Tags { get; set; }
 
         public int UpvoteCount { get; private set; } = 0;
-        public void IncreaseUpvoteCount()
+        public void IncrementUpvoteCount()
         {
             this.UpvoteCount++;
         }
 
         public int DownvoteCount { get; private set; } = 0;
-        public void IncreaseDownvoteCount()
+        public void IncrementDownvoteCount()
         {
             this.DownvoteCount++;
         }
