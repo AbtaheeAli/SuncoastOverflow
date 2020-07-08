@@ -4,6 +4,7 @@ import { useHistory } from 'react-router'
 export function AskQuestions() {
   const history = useHistory()
 
+  const [errorMessage, setErrorMessage] = useState()
   const [newQuestion, setNewQuestion] = useState({
     title: '',
     body: '',
@@ -29,8 +30,13 @@ export function AskQuestions() {
       body: JSON.stringify(newQuestion),
     })
       .then(response => response.json())
-      .then(() => {
-        history.push('/')
+      .then(apiData => {
+        if (apiData.status === 400) {
+          const newMessage = Object.values(apiData.errors).join(' ')
+          setErrorMessage(newMessage)
+        } else {
+          history.push('/')
+        }
       })
   }
 
@@ -38,6 +44,11 @@ export function AskQuestions() {
     <div className="card">
       <div className="card-header">Ask a Question</div>
       <div className="card-body">
+        {errorMessage && (
+          <div className="alert alert-danger" role="alert">
+            {errorMessage}
+          </div>
+        )}
         <form onSubmit={handleFormSubmit}>
           <div className="form-group">
             <label htmlFor="title">Title</label>
