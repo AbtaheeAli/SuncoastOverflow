@@ -15,6 +15,9 @@ namespace SuncoastOverflow.Models
         public DbSet<Question> Questions { get; set; }
 
 
+        public DbSet<Answer> Answers { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (LOG_SQL_STATEMENTS_IN_DEVELOPMENT && Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development")

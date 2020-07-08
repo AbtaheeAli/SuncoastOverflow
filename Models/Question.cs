@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace SuncoastOverflow.Models
@@ -13,6 +14,7 @@ namespace SuncoastOverflow.Models
         public string Body { get; set; }
         public string Tags { get; set; }
 
+        public List<Answer> Answers { get; set; }
         public int UpvoteCount { get; private set; } = 0;
         public void IncrementUpvoteCount()
         {
