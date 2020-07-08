@@ -7,10 +7,9 @@ namespace SuncoastOverflow.Models
 {
     public partial class DatabaseContext : DbContext
     {
-        // Change this if you want to have a different database name in development
         private static string DEVELOPMENT_DATABASE_NAME = "SuncoastOverflowDatabase";
 
-        // Change this to true if you want to have logging of SQL statements in development
+
         private static bool LOG_SQL_STATEMENTS_IN_DEVELOPMENT = false;
 
         public DbSet<Question> Questions { get; set; }
