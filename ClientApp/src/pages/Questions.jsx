@@ -28,16 +28,21 @@ function SingleQuestionForList(props) {
     </Link>
   )
 }
-export function Questions() {
+export function Questions(props) {
   const [questions, setQuestions] = useState([])
 
   useEffect(() => {
-    fetch('/api/Questions')
+    const url =
+      props.activeFilter.length === 0
+        ? `/api/Questions`
+        : `/api/Questions?filter=${props.activeFilter}`
+
+    fetch(url)
       .then(response => response.json())
       .then(apiData => {
         setQuestions(apiData)
       })
-  })
+  }, [props.activeFilter])
   return (
     <>
       <nav aria-label="breadcrumb">
