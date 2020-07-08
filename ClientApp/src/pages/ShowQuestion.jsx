@@ -1,27 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useParams } from 'react-router'
 
 export function ShowQuestion() {
+  const params = useParams()
+  const id = params.id
+
+  const [question, setQuestion] = useState({
+    title: '',
+    body: '',
+    tags: '',
+  })
+
+  useEffect(() => {
+    const fetchQuestion = async () => {
+      const response = await fetch(`/api/Questions/${id}`)
+      const apiData = await response.json()
+
+      setQuestion(apiData)
+    }
+
+    fetchQuestion()
+  }, [])
+
   return (
     <div className="taco-listing">
       <div className="media mb-5">
+        <span className="pr-3 display-2" role="" aria-label="t"></span>
         <div className="media-body">
-          <h3 className="mt-3">How to make classes using C#?</h3>
+          <h2 className="mt-3">{question.title}</h2>
           <span className="pt-3">
             <strong>21 March, 2014</strong>
           </span>
-          <p>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus
-            scelerisque ante sollicitudin. Cras purus odio, vestibulum in
-            vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi
-            vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </p>
+          <p>{question.body}</p>
         </div>
       </div>
 
       <div className="row mb-5">
         <div className="col-12">
-          <h3>2 Answers</h3>
+          <h3>Answers</h3>
           <ul>
             <li>
               <p className="mb-2">
