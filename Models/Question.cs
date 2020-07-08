@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace SuncoastOverflow.Models
 {
     public class Question
@@ -6,6 +8,8 @@ namespace SuncoastOverflow.Models
 
         [Required]
         public string Title { get; set; }
+
+        [Required]
         public string Body { get; set; }
         public string Tags { get; set; }
 

@@ -29,10 +29,8 @@ export function AskQuestions() {
       body: JSON.stringify(newQuestion),
     })
       .then(response => response.json())
-      .then(apiData => {
-      
-          history.push('/')
-        }
+      .then(() => {
+        history.push('/')
       })
   }
 
