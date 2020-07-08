@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useParams } from 'react-router'
+import format from 'date-fns/format'
+
+const dateFormat = `EEEE, MMMM do, yyyy 'at' h:mm aaa`
 
 export function ShowQuestion() {
   const params = useParams()
@@ -70,7 +73,9 @@ export function ShowQuestion() {
             <ul className="timeline">
               {question.answers.map(answer => (
                 <li key={answer.id}>
-                  <span className="float-right">{answer.createdAt}</span>
+                  <span className="float-right">
+                    {format(new Date(answer.createdAt), dateFormat)}
+                  </span>
                   <p>{answer.body}</p>
                 </li>
               ))}
