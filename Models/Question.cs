@@ -24,6 +24,5 @@ namespace SuncoastOverflow.Models
         {
             this.DownvoteCount++;
         }
-
     }
 }
