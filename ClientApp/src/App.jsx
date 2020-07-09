@@ -7,6 +7,7 @@ import { AskQuestions } from './pages/AskQuestions'
 import { Questions } from './pages/Questions'
 import { ShowQuestion } from './pages/ShowQuestion'
 import { SignUp } from './pages/Signup'
+import { SignIn } from './pages/Signin'
 
 export function App() {
   const [activeFilter, setActiveFilter] = useState('')
@@ -22,6 +23,9 @@ export function App() {
           </Route>
           <Route path="/signup">
             <SignUp />
+          </Route>
+          <Route path="/signin">
+            <SignIn />
           </Route>
           <Route path="/questions/ask">
             <AskQuestions />

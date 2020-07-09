@@ -1,12 +1,20 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Route } from 'react-router'
+import { isLoggedIn, logout } from '../auth'
 
 export function NavBar(props) {
   const [filterText, setfilterText] = useState('')
 
   const handleClickSearch = event => {}
   props.setActiveFilter(filterText)
+
+  const handleLogout = () => {
+    logout()
+
+    window.location = '/'
+  }
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className=" nav navbar-brand" to="/">
@@ -38,11 +46,18 @@ export function NavBar(props) {
             <span className="navi"></span>
           </li>
         </ul>
-        <Link className="btn btn-success mr-2" to="/signup">
-          Sign Up
-        </Link>
+        {isLoggedIn() || (
+          <Link className="btn btn-success mr-2" to="/signup">
+            Sign Up
+          </Link>
+        )}
+        {isLoggedIn() || (
+          <Link className="btn btn-success mr-2" to="/signin">
+            Sign In
+          </Link>
+        )}
         <Route exact path="/">
-          <form className="form-inline my-2 my-lg-0">
+          <form className="form-inline mr-2 my-2 my-lg-0">
             <Link className="btn btn-success mr-2" to="/questions/ask">
               Ask A Question
             </Link>
@@ -62,6 +77,12 @@ export function NavBar(props) {
             </span>
           </form>
         </Route>
+
+        {isLoggedIn() && (
+          <span className="btn btn-success" onClick={handleLogout}>
+            Sign Out
+          </span>
+        )}
       </div>
     </nav>
   )
