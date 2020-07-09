@@ -6,6 +6,7 @@ import { NavBar } from './components/NavBar'
 import { AskQuestions } from './pages/AskQuestions'
 import { Questions } from './pages/Questions'
 import { ShowQuestion } from './pages/ShowQuestion'
+import { SignUp } from './pages/Signup'
 
 export function App() {
   const [activeFilter, setActiveFilter] = useState('')
@@ -18,6 +19,9 @@ export function App() {
         <Switch>
           <Route exact path="/">
             <Questions activeFilter={activeFilter} />
+          </Route>
+          <Route path="/signup">
+            <SignUp />
           </Route>
           <Route path="/questions/ask">
             <AskQuestions />
