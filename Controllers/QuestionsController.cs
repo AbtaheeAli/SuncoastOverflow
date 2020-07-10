@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -76,8 +78,12 @@ namespace SuncoastOverflow.Controllers
         }
 
         [HttpPost]
+        [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Question>> PostQuestion(Question question)
         {
+
+            question.UserId = GetCurrentUserId();
+
             _context.Questions.Add(question);
             await _context.SaveChangesAsync();
 
@@ -102,6 +108,12 @@ namespace SuncoastOverflow.Controllers
         private bool QuestionExists(int id)
         {
             return _context.Questions.Any(question => question.Id == id);
+        }
+
+
+        private int GetCurrentUserId()
+        {
+            return int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == "Id").Value);
         }
     }
 }

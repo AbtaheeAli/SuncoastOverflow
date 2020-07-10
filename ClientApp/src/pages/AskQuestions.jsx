@@ -26,16 +26,23 @@ export function AskQuestions() {
 
     fetch('/api/Questions', {
       method: 'POST',
-      headers: { 'content-type': 'application/json' },
+      headers: { 'content-type': 'application/json', ...authheader() },
       body: JSON.stringify(newQuestion),
     })
-      .then(response => response.json())
+      .then(response => {
+        .then(response => {
+          if (response.status === 401) {
+            return { status: 401, errors: { login: 'Not Authorized ' } }
+          } else {
+            return response.json()
+          }
+      })
       .then(apiData => {
-        if (apiData.status === 400) {
+        if (apiData.status == 201) {
+          history.push('/')
+        } else {
           const newMessage = Object.values(apiData.errors).join(' ')
           setErrorMessage(newMessage)
-        } else {
-          history.push('/')
         }
       })
   }

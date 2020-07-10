@@ -20,7 +20,7 @@ namespace SuncoastOverflow.Models
         {
             this.UpvoteCount++;
         }
-
+        public int UserId { get; set; }
         public int DownvoteCount { get; private set; } = 0;
         public void IncrementDownvoteCount()
         {
