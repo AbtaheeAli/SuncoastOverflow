@@ -26,7 +26,6 @@ namespace SuncoastOverflow.Controllers
         [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         public async Task<ActionResult<Answer>> PostAnswer(Answer answer)
         {
-
             answer.UserId = GetCurrentUserId();
 
             _context.Answers.Add(answer);
