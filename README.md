@@ -12,5 +12,5 @@ The application is able to:
 - User can sign in and sign out of application
 - User is able to Route through different pages of the application
 - User is able to ask a question or write an answer to a question
-- User is able to up vote or down vote a question when logged in
+- User is able to upvote or downvote a question when logged in
 - API fetches a single question along with answers when logged in
