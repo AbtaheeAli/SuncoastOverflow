@@ -4,7 +4,7 @@
 
 Languages and technologies used: .NET, C#, JavaScript, NodeJS, ReactJS, React Routers, API, HTML, CSS, & BootStrap
 
-Created a full-stack application that replicates StackOverflow
+Created a full-stack application that is similar to StackOverflow
 
 The application is able to:
 
